@@ -12,5 +12,8 @@ namespace Traveltech.Models
         public int? PageId { get; set; }
         [JsonIgnore]
         public Page Page { get; set; }
+        public int? HomePageId { get; set; }
+        [JsonIgnore]
+        public HomePage HomePage { get; set; }
     }
 }

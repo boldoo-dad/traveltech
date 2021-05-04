@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Traveltech.Controllers.Dto.Helpers;
 using Traveltech.Models.Data;
+using Traveltech.Models.Data.Repo;
 
 namespace Traveltech
 {
@@ -29,8 +31,8 @@ namespace Traveltech
             services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
-            //services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
