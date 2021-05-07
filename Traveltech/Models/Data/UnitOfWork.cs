@@ -20,7 +20,14 @@ namespace Traveltech.Models.Data
         public ISectionRepository SectionRepository =>
             new SectionRepository(dc);
 
-        public IHomePagesRepository HomePagesRepository => new HomePagesRepository(dc);
+        public IHomePagesRepository HomePagesRepository =>
+            new HomePagesRepository(dc);
+
+        public ICategoryRepository CategoryRepository =>
+            new CategoryRepository(dc);
+
+        public IPostRepository PostRepository =>
+            new PostRepository(dc);
 
         public async Task<bool> SaveAsync()
         {
@@ -29,6 +36,8 @@ namespace Traveltech.Models.Data
     }
     public interface IUnitOfWork
     {
+        IPostRepository PostRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
         IHomePagesRepository HomePagesRepository { get; }
         ISectionRepository SectionRepository { get; }
         IPageRepository PageRepository { get; }

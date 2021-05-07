@@ -11,6 +11,8 @@ namespace Traveltech.Controllers.Dto.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Post, PostDto>().ReverseMap();
+            CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<HomePage, HomePageDto>().ReverseMap();
             CreateMap<Section, SectionDto>().ReverseMap();
             CreateMap<Page, PageDto>().ReverseMap();

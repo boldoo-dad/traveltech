@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,7 @@ namespace Traveltech.Models
         public DateTime? CreatedDate { get; set; }
         public DateTime? PublishedDate { get; set; }
         public DateTime? ArchiedDate { get; set; }
+        [JsonIgnore]
         public IList<Category> Categories { get; set; }
     }
 }
