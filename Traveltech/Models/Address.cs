@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Traveltech.Models.Widgets;
 
 namespace Traveltech.Models
 {
@@ -24,5 +25,9 @@ namespace Traveltech.Models
         public int? LandId { get; set; }
         [JsonIgnore]
         public Land Land { get; set; }
+
+        public int? ContactId { get; set; }
+        [JsonIgnore]
+        public Contact Contact { get; set; }
     }
 }

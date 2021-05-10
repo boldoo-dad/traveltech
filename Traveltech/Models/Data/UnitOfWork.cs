@@ -14,6 +14,8 @@ namespace Traveltech.Models.Data
         {
             this.dc = dc;
         }
+
+        #region 1
         public IPageRepository PageRepository =>
             new PageRepository(dc);
 
@@ -29,6 +31,22 @@ namespace Traveltech.Models.Data
         public IPostRepository PostRepository =>
             new PostRepository(dc);
 
+        public IAddressRepository AddressRepository =>
+            new AddressRepository(dc);
+
+        public ICityRepository CityRepository =>
+            new CityRepository(dc);
+
+        public IStateRepository StateRepository =>
+            new StateRepository(dc);
+
+        public ILandRepository LandRepository =>
+            new LandRepository(dc);
+
+        public IContactRepository ContactRepository =>
+            new ContactRepository(dc);
+        #endregion
+
         public async Task<bool> SaveAsync()
         {
             return await dc.SaveChangesAsync() > 0;
@@ -36,6 +54,11 @@ namespace Traveltech.Models.Data
     }
     public interface IUnitOfWork
     {
+        IContactRepository ContactRepository { get; }
+        ILandRepository LandRepository { get; }
+        IStateRepository StateRepository { get; }
+        ICityRepository CityRepository { get; }
+        IAddressRepository AddressRepository { get; }
         IPostRepository PostRepository { get; }
         ICategoryRepository CategoryRepository { get; }
         IHomePagesRepository HomePagesRepository { get; }

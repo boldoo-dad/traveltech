@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Traveltech.Models;
+using Traveltech.Models.Widgets;
 
 namespace Traveltech.Controllers.Dto.Helpers
 {
@@ -11,6 +12,11 @@ namespace Traveltech.Controllers.Dto.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Contact, ContactDto>().ReverseMap();
+            CreateMap<Land, LandDto>().ReverseMap();
+            CreateMap<State, StateDto>().ReverseMap();
+            CreateMap<City, CityDto>().ReverseMap();
+            CreateMap<Address, AddressDto>().ReverseMap();
             CreateMap<Post, PostDto>().ReverseMap();
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<HomePage, HomePageDto>().ReverseMap();

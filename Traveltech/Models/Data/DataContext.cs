@@ -30,6 +30,7 @@ namespace Traveltech.Models.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<State> States { get; set; }
         public DbSet<Sumbol> Sumbols { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TimeFormat> TimeFormats { get; set; }
