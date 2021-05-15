@@ -418,9 +418,6 @@ namespace Traveltech.Migrations
                     b.Property<int?>("SumbolId")
                         .HasColumnType("int");
 
-                    b.Property<string>("SymbolId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -721,7 +718,7 @@ namespace Traveltech.Migrations
                         .WithMany()
                         .HasForeignKey("CityId");
 
-                    b.HasOne("Traveltech.Models.Widgets.Contact", null)
+                    b.HasOne("Traveltech.Models.Widgets.Contact", "Contact")
                         .WithMany("Addresses")
                         .HasForeignKey("ContactId");
 
@@ -734,6 +731,8 @@ namespace Traveltech.Migrations
                         .HasForeignKey("StateId");
 
                     b.Navigation("City");
+
+                    b.Navigation("Contact");
 
                     b.Navigation("Land");
 

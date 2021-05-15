@@ -73,21 +73,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region Cities
-        [HttpGet("cities")]
+        [HttpGet("Cities")]
         public async Task<IActionResult> GetCities()
         {
             var cities = await uow.CityRepository.getCitiesAsync();
             var citiesDto = mapper.Map<IList<CityDto>>(cities);
             return Ok(citiesDto);
         }
-        [HttpGet("cities/{id}")]
+        [HttpGet("Cities/{id}")]
         public async Task<IActionResult> GetCities(int id)
         {
             var cityFromDb = await uow.CityRepository.findCityAsync(id);
             var cityDto = mapper.Map<CityDto>(cityFromDb);
             return Ok(cityDto);
         }
-        [HttpPost("cities")]
+        [HttpPost("Cities")]
         public async Task<IActionResult> PostCities(CityDto cityDto)
         {
             var city = mapper.Map<City>(cityDto);
@@ -95,7 +95,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("cities/{id}")]
+        [HttpPut("Cities/{id}")]
         public async Task<IActionResult> PutCities(int id, CityDto cityDto)
         {
             if (id != cityDto.Id)
@@ -107,7 +107,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("cities/{id}")]
+        [HttpDelete("Cities/{id}")]
         public async Task<IActionResult> DeleteCities(int id)
         {
             var cityFromDb = await uow.CityRepository.findCityAsync(id);
@@ -120,21 +120,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region States
-        [HttpGet("states")]
+        [HttpGet("States")]
         public async Task<IActionResult> GetStates()
         {
             var states = await uow.StateRepository.getStatesAsync();
             var statesDto = mapper.Map<IList<StateDto>>(states);
             return Ok(statesDto);
         }
-        [HttpGet("states/{id}")]
+        [HttpGet("States/{id}")]
         public async Task<IActionResult> GetStates(int id)
         {
             var stateFromDb = await uow.StateRepository.findStateAsync(id);
             var stateDto = mapper.Map<StateDto>(stateFromDb);
             return Ok(stateDto);
         }
-        [HttpPost("states")]
+        [HttpPost("States")]
         public async Task<IActionResult> PostStates(StateDto stateDto)
         {
             var state = mapper.Map<State>(stateDto);
@@ -142,7 +142,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("states/{id}")]
+        [HttpPut("States/{id}")]
         public async Task<IActionResult> PutStates(int id, StateDto stateDto)
         {
             if (id != stateDto.Id)
@@ -154,7 +154,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("states/{id}")]
+        [HttpDelete("States/{id}")]
         public async Task<IActionResult> DeleteStates(int id)
         {
             var stateFromDb = await uow.StateRepository.findStateAsync(id);
@@ -167,21 +167,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region Lands
-        [HttpGet("lands")]
+        [HttpGet("Lands")]
         public async Task<IActionResult> GetLands()
         {
             var lands = await uow.LandRepository.getLandsAsync();
             var landsDto = mapper.Map<IList<LandDto>>(lands);
             return Ok(landsDto);
         }
-        [HttpGet("lands/{id}")]
+        [HttpGet("Lands/{id}")]
         public async Task<IActionResult> GetLands(int id)
         {
             var landFromDb = await uow.LandRepository.findLandAsync(id);
             var landDto = mapper.Map<LandDto>(landFromDb);
             return Ok(landDto);
         }
-        [HttpPost("lands")]
+        [HttpPost("Lands")]
         public async Task<IActionResult> PostLands(LandDto landDto)
         {
             var land = mapper.Map<Land>(landDto);
@@ -189,7 +189,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("lands/{id}")]
+        [HttpPut("Lands/{id}")]
         public async Task<IActionResult> PutLands(int id, LandDto landDto)
         {
             if (id != landDto.Id)
@@ -201,7 +201,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("lands/{id}")]
+        [HttpDelete("Lands/{id}")]
         public async Task<IActionResult> DeleteLands(int id)
         {
             var landFromDb = await uow.LandRepository.findLandAsync(id);
@@ -214,21 +214,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region Contacts
-        [HttpGet("contacts")]
+        [HttpGet("Contacts")]
         public async Task<IActionResult> GetContacts()
         {
             var contacts = await uow.ContactRepository.getContactsAsync();
             var contactsDto = mapper.Map<IList<ContactDto>>(contacts);
             return Ok(contactsDto);
         }
-        [HttpGet("contacts/{id}")]
+        [HttpGet("Contacts/{id}")]
         public async Task<IActionResult> GetContacts(int id)
         {
             var contactFromDb = await uow.ContactRepository.findContactAsync(id);
             var contactDto = mapper.Map<ContactDto>(contactFromDb);
             return Ok(contactDto);
         }
-        [HttpPost("contacts")]
+        [HttpPost("Contacts")]
         public async Task<IActionResult> PostContacts(ContactDto contactDto)
         {
             var contact = mapper.Map<Contact>(contactDto);
@@ -236,7 +236,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("contacts/{id}")]
+        [HttpPut("Contacts/{id}")]
         public async Task<IActionResult> PutContacts(int id, ContactDto contactDto)
         {
             if (id != contactDto.Id)
@@ -248,7 +248,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("contacts/{id}")]
+        [HttpDelete("Contacts/{id}")]
         public async Task<IActionResult> DeleteContacts(int id)
         {
             var contactFromDb = await uow.ContactRepository.findContactAsync(id);

@@ -94,21 +94,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region Posts
-        [HttpGet("posts")]
+        [HttpGet("Posts")]
         public async Task<IActionResult> GetPosts()
         {
             var posts = await uow.PostRepository.getPostsAsync();
             var postsDto = mapper.Map<IList<PostDto>>(posts);
             return Ok(postsDto);
         }
-        [HttpGet("posts/{id}")]
+        [HttpGet("Posts/{id}")]
         public async Task<IActionResult> GetPosts(int id)
         {
             var postFromDb = await uow.PostRepository.findPostAsync(id);
             var postDto = mapper.Map<PostDto>(postFromDb);
             return Ok(postDto);
         }
-        [HttpPost("posts")]
+        [HttpPost("Posts")]
         public async Task<IActionResult> PostPosts(PostDto postDto)
         {
             var posts = mapper.Map<Post>(postDto);
@@ -116,7 +116,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("posts/{id}")]
+        [HttpPut("Posts/{id}")]
         public async Task<IActionResult> PutPosts(int id, PostDto postDto)
         {
             if (id != postDto.Id)
@@ -128,7 +128,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("posts/{id}")]
+        [HttpDelete("Posts/{id}")]
         public async Task<IActionResult> DeletePosts(int id)
         {
             var postFromDb = await uow.PostRepository.findPostAsync(id);

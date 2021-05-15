@@ -15,7 +15,6 @@ namespace Traveltech.Models.Data
             this.dc = dc;
         }
 
-        #region 1
         public IPageRepository PageRepository =>
             new PageRepository(dc);
 
@@ -45,7 +44,12 @@ namespace Traveltech.Models.Data
 
         public IContactRepository ContactRepository =>
             new ContactRepository(dc);
-        #endregion
+
+        public ISumbolRepository SumbolRepository =>
+            new SumbolRepository(dc);
+
+        public ISocialMediaRepository SocialMediaRepository =>
+            new SocialMediaRepository(dc);
 
         public async Task<bool> SaveAsync()
         {
@@ -54,6 +58,8 @@ namespace Traveltech.Models.Data
     }
     public interface IUnitOfWork
     {
+        ISocialMediaRepository SocialMediaRepository { get; }
+        ISumbolRepository SumbolRepository { get; }
         IContactRepository ContactRepository { get; }
         ILandRepository LandRepository { get; }
         IStateRepository StateRepository { get; }

@@ -9,7 +9,7 @@ namespace Traveltech.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string SymbolId { get; set; }
+        public int? SumbolId { get; set; }
         [JsonIgnore]
         public Sumbol Sumbol { get; set; }
         public string Link { get; set; }

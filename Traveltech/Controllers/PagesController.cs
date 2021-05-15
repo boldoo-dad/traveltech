@@ -72,21 +72,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region Sections
-        [HttpGet("sections")]
+        [HttpGet("Sections")]
         public async Task<IActionResult> GetSections()
         {
             var sections = await uow.SectionRepository.getSectionsAsync();
             var sectionsDto = mapper.Map<IList<SectionDto>>(sections);
             return Ok(sectionsDto);
         }
-        [HttpGet("sections/{id}")]
+        [HttpGet("Sections/{id}")]
         public async Task<IActionResult> GetSections(int id)
         {
             var sectionFromDb = await uow.SectionRepository.findSectionAsync(id);
             var sectionDto = mapper.Map<SectionDto>(sectionFromDb);
             return Ok(sectionDto);
         }
-        [HttpPost("sections")]
+        [HttpPost("Sections")]
         public async Task<IActionResult> PostSections(SectionDto sectionDto)
         {
             var section = mapper.Map<Section>(sectionDto);
@@ -94,7 +94,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("sections/{id}")]
+        [HttpPut("Sections/{id}")]
         public async Task<IActionResult> PutSections(int id, SectionDto sectionDto)
         {
             if (id != sectionDto.Id)
@@ -106,7 +106,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("sections/{id}")]
+        [HttpDelete("Sections/{id}")]
         public async Task<IActionResult> DeleteSections(int id)
         {
             var sectionFromDb = await uow.SectionRepository.findSectionAsync(id);
@@ -119,21 +119,21 @@ namespace Traveltech.Controllers
         #endregion
 
         #region HomePages
-        [HttpGet("homepages")]
+        [HttpGet("HomePages")]
         public async Task<IActionResult> GetHomePages()
         {
             var homePages = await uow.HomePagesRepository.getHomePagesAsync();
             var homePagesDto = mapper.Map<IList<HomePageDto>>(homePages);
             return Ok(homePagesDto);
         }
-        [HttpGet("homepages/{id}")]
+        [HttpGet("HomePages/{id}")]
         public async Task<IActionResult> GetHomePages(int id)
         {
             var homepageFromDb = await uow.HomePagesRepository.findHomePageAsync(id);
             var homepageDto = mapper.Map<HomePageDto>(homepageFromDb);
             return Ok(homepageDto);
         }
-        [HttpPost("homepages")]
+        [HttpPost("HomePages")]
         public async Task<IActionResult> PostHomePages(HomePageDto homePageDto)
         {
             var homepage = mapper.Map<HomePage>(homePageDto);
@@ -141,7 +141,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
-        [HttpPut("homepages/{id}")]
+        [HttpPut("HomePages/{id}")]
         public async Task<IActionResult> PutHomePages(int id, HomePageDto homePageDto)
         {
             if (id != homePageDto.Id)
@@ -153,7 +153,7 @@ namespace Traveltech.Controllers
             await uow.SaveAsync();
             return StatusCode(200);
         }
-        [HttpDelete("homepages/{id}")]
+        [HttpDelete("HomePages/{id}")]
         public async Task<IActionResult> DeleteHomePages(int id)
         {
             var homepageFromDb = await uow.HomePagesRepository.findHomePageAsync(id);
