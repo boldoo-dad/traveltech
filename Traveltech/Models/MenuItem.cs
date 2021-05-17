@@ -9,6 +9,6 @@ namespace Traveltech.Models
     {
         public int? MenuId { get; set; }
         [JsonIgnore]
-        public Menu Parent { get; set; }
+        public Menu Menu { get; set; }
     }
 }

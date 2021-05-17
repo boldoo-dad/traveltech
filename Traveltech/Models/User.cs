@@ -12,6 +12,9 @@ namespace Traveltech.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        public int? WebSiteId { get; set; }
+        [JsonIgnore]
+        public WebSite WebSite { get; set; }
         public int? ClientId { get; set; }
         [JsonIgnore]
         public Client Client { get; set; }

@@ -51,6 +51,14 @@ namespace Traveltech.Models.Data
         public ISocialMediaRepository SocialMediaRepository =>
             new SocialMediaRepository(dc);
 
+        public IWebSiteRepository WebSiteRepository =>
+            new WebSiteRepository(dc);
+
+        public IUserRepository UserRepository =>
+            new UserRepository(dc);
+        public IClientRepository ClientRepository =>
+           new ClientRepository(dc);
+
         public async Task<bool> SaveAsync()
         {
             return await dc.SaveChangesAsync() > 0;
@@ -58,6 +66,9 @@ namespace Traveltech.Models.Data
     }
     public interface IUnitOfWork
     {
+        IClientRepository ClientRepository { get; }
+        IUserRepository UserRepository { get; }
+        IWebSiteRepository WebSiteRepository { get; }
         ISocialMediaRepository SocialMediaRepository { get; }
         ISumbolRepository SumbolRepository { get; }
         IContactRepository ContactRepository { get; }

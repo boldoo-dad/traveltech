@@ -12,6 +12,9 @@ namespace Traveltech.Controllers.Dto.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Client, ClientDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<WebSite, WebSiteDto>().ReverseMap();
             CreateMap<SocialMedia, SocialMediaDto>().ReverseMap();
             CreateMap<Sumbol, SumbolDto>().ReverseMap();
             CreateMap<Contact, ContactDto>().ReverseMap();

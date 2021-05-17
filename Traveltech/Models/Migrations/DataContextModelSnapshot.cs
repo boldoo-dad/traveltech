@@ -123,6 +123,9 @@ namespace Traveltech.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
@@ -134,6 +137,9 @@ namespace Traveltech.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -213,6 +219,9 @@ namespace Traveltech.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -488,6 +497,9 @@ namespace Traveltech.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("TimeFormats");
@@ -606,6 +618,9 @@ namespace Traveltech.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Calendars");
@@ -636,6 +651,9 @@ namespace Traveltech.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Galleries");
@@ -652,6 +670,9 @@ namespace Traveltech.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Medias");
@@ -665,6 +686,9 @@ namespace Traveltech.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -833,11 +857,13 @@ namespace Traveltech.Migrations
                         .WithMany("Users")
                         .HasForeignKey("ClientId");
 
-                    b.HasOne("Traveltech.Models.WebSite", null)
+                    b.HasOne("Traveltech.Models.WebSite", "WebSite")
                         .WithMany("Users")
                         .HasForeignKey("WebSiteId");
 
                     b.Navigation("Client");
+
+                    b.Navigation("WebSite");
                 });
 
             modelBuilder.Entity("Traveltech.Models.WebSite", b =>
@@ -881,11 +907,11 @@ namespace Traveltech.Migrations
 
             modelBuilder.Entity("Traveltech.Models.MenuItem", b =>
                 {
-                    b.HasOne("Traveltech.Models.Menu", "Parent")
+                    b.HasOne("Traveltech.Models.Menu", "Menu")
                         .WithMany("MenuItems")
                         .HasForeignKey("MenuId");
 
-                    b.Navigation("Parent");
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("Traveltech.Models.Client", b =>
