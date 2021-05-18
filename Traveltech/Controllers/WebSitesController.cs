@@ -164,5 +164,99 @@ namespace Traveltech.Controllers
             return Ok(id);
         }
         #endregion
+
+        #region DateFormats
+        [HttpGet("DateFormats")]
+        public async Task<IActionResult> GetDateFormats()
+        {
+            var dateFormats = await uow.DateFormatRepository.getDateFormats();
+            var dateFormatsDto = mapper.Map<IList<DateFormatDto>>(dateFormats);
+            return Ok(dateFormatsDto);
+        }
+        [HttpGet("DateFormats/{id}")]
+        public async Task<IActionResult> GetDateFormats(int id)
+        {
+            var dateFormatFromDb = await uow.DateFormatRepository.findDateFormatAsync(id);
+            var dateFormatDto = mapper.Map<DateFormatDto>(dateFormatFromDb);
+            return Ok(dateFormatDto);
+        }
+        [HttpPost("DateFormats")]
+        public async Task<IActionResult> PostDateFormats(DateFormatDto dateFormatDto)
+        {
+            var dateFormat = mapper.Map<DateFormat>(dateFormatDto);
+            uow.DateFormatRepository.addDateFormat(dateFormat);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("DateFormats/{id}")]
+        public async Task<IActionResult> PutDateFormats(int id, DateFormatDto dateFormatDto)
+        {
+            if (id != dateFormatDto.Id)
+                return BadRequest("Update not allowed");
+            var dateFormatFromDb = await uow.DateFormatRepository.findDateFormatAsync(id);
+            if (dateFormatFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(dateFormatDto, dateFormatFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("DateFormats/{id}")]
+        public async Task<IActionResult> DeleteDateFormats(int id)
+        {
+            var dateFormatFromDb = await uow.DateFormatRepository.findDateFormatAsync(id);
+            if (dateFormatFromDb == null)
+                return StatusCode(204);
+            uow.DateFormatRepository.deleteDateFormat(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
+
+        #region Languages
+        [HttpGet("Languages")]
+        public async Task<IActionResult> GetLanguages()
+        {
+            var languages = await uow.LanguageRepository.getLanguages();
+            var languagesDto = mapper.Map<IList<LanguageDto>>(languages);
+            return Ok(languagesDto);
+        }
+        [HttpGet("Languages/{id}")]
+        public async Task<IActionResult> GetLanguages(int id)
+        {
+            var languageFromDb = await uow.LanguageRepository.findLanguageAsync(id);
+            var languagesDto = mapper.Map<LanguageDto>(languageFromDb);
+            return Ok(languagesDto);
+        }
+        [HttpPost("Languages")]
+        public async Task<IActionResult> PostLanguages(LanguageDto languageDto)
+        {
+            var language = mapper.Map<Language>(languageDto);
+            uow.LanguageRepository.addLanguage(language);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("Languages/{id}")]
+        public async Task<IActionResult> PutLanguages(int id, LanguageDto languageDto)
+        {
+            if (id != languageDto.Id)
+                return BadRequest("Update not allowed");
+            var languageFromDb = await uow.LanguageRepository.findLanguageAsync(id);
+            if (languageFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(languageDto, languageFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("Languages/{id}")]
+        public async Task<IActionResult> DeleteLanguages(int id)
+        {
+            var languageFromDb = await uow.LanguageRepository.findLanguageAsync(id);
+            if (languageFromDb == null)
+                return StatusCode(204);
+            uow.LanguageRepository.deleteLanguage(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
     }
 }

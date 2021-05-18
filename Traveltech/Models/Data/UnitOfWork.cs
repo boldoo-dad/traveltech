@@ -6,6 +6,27 @@ using Traveltech.Models.Data.Repo;
 
 namespace Traveltech.Models.Data
 {
+    public interface IUnitOfWork
+    {
+        ILanguageRepository LanguageRepository { get; }
+        IClientRepository ClientRepository { get; }
+        IUserRepository UserRepository { get; }
+        IWebSiteRepository WebSiteRepository { get; }
+        ISocialMediaRepository SocialMediaRepository { get; }
+        ISumbolRepository SumbolRepository { get; }
+        IContactRepository ContactRepository { get; }
+        ILandRepository LandRepository { get; }
+        IStateRepository StateRepository { get; }
+        ICityRepository CityRepository { get; }
+        IAddressRepository AddressRepository { get; }
+        IPostRepository PostRepository { get; }
+        ICategoryRepository CategoryRepository { get; }
+        IHomePagesRepository HomePagesRepository { get; }
+        ISectionRepository SectionRepository { get; }
+        IPageRepository PageRepository { get; }
+        IDateFormatRepository DateFormatRepository { get; }
+        Task<bool> SaveAsync();
+    }
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext dc;
@@ -14,6 +35,10 @@ namespace Traveltech.Models.Data
         {
             this.dc = dc;
         }
+        public ILanguageRepository LanguageRepository =>
+         new LanguageRepository(dc);
+        public IDateFormatRepository DateFormatRepository =>
+           new DateFormatRepository(dc);
 
         public IPageRepository PageRepository =>
             new PageRepository(dc);
@@ -54,6 +79,7 @@ namespace Traveltech.Models.Data
         public IWebSiteRepository WebSiteRepository =>
             new WebSiteRepository(dc);
 
+
         public IUserRepository UserRepository =>
             new UserRepository(dc);
         public IClientRepository ClientRepository =>
@@ -63,24 +89,5 @@ namespace Traveltech.Models.Data
         {
             return await dc.SaveChangesAsync() > 0;
         }
-    }
-    public interface IUnitOfWork
-    {
-        IClientRepository ClientRepository { get; }
-        IUserRepository UserRepository { get; }
-        IWebSiteRepository WebSiteRepository { get; }
-        ISocialMediaRepository SocialMediaRepository { get; }
-        ISumbolRepository SumbolRepository { get; }
-        IContactRepository ContactRepository { get; }
-        ILandRepository LandRepository { get; }
-        IStateRepository StateRepository { get; }
-        ICityRepository CityRepository { get; }
-        IAddressRepository AddressRepository { get; }
-        IPostRepository PostRepository { get; }
-        ICategoryRepository CategoryRepository { get; }
-        IHomePagesRepository HomePagesRepository { get; }
-        ISectionRepository SectionRepository { get; }
-        IPageRepository PageRepository { get; }
-        Task<bool> SaveAsync();
     }
 }
