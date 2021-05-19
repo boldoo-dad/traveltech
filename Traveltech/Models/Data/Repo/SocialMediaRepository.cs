@@ -14,32 +14,32 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addSocialMedia(SocialMedia socialMedia)
+        public void AddSocialMedia(SocialMedia socialMedia)
         {
             dc.SocialMedias.Add(socialMedia);
         }
 
-        public void deleteSocialMedia(int socialMediaId)
+        public void DeleteSocialMedia(int socialMediaId)
         {
             var id = dc.SocialMedias.Find(socialMediaId);
             dc.SocialMedias.Remove(id);
         }
 
-        public async Task<SocialMedia> findSocialMediaAsync(int id)
+        public async Task<SocialMedia> FindSocialMediaAsync(int id)
         {
             return await dc.SocialMedias.FindAsync(id);
         }
 
-        public async Task<IList<SocialMedia>> getSocialMediasAsync()
+        public async Task<IList<SocialMedia>> GetSocialMediasAsync()
         {
             return await dc.SocialMedias.ToListAsync();
         }
     }
     public interface ISocialMediaRepository
     {
-        void addSocialMedia(SocialMedia socialMedia);
-        void deleteSocialMedia(int socialMediaId);
-        Task<SocialMedia> findSocialMediaAsync(int id);
-        Task<IList<SocialMedia>> getSocialMediasAsync();
+        void AddSocialMedia(SocialMedia socialMedia);
+        void DeleteSocialMedia(int socialMediaId);
+        Task<SocialMedia> FindSocialMediaAsync(int id);
+        Task<IList<SocialMedia>> GetSocialMediasAsync();
     }
 }

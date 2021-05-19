@@ -14,26 +14,26 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addLand(Land land)
+        public void AddLand(Land land)
         {
             dc.Lands.Add(land);
         }
 
-        public void deleteLand(int landId)
+        public void DeleteLand(int landId)
         {
             var id = dc.Lands.Find(landId);
             dc.Lands.Remove(id);
         }
 
 
-        public async Task<Land> findLandAsync(int id)
+        public async Task<Land> FindLandAsync(int id)
         {
             return await dc.Lands
                 .Include("States.Cities")
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Land>> getLandsAsync()
+        public async Task<IList<Land>> GetLandsAsync()
         {
             return await dc.Lands
                 .Include("States.Cities")
@@ -42,9 +42,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface ILandRepository
     {
-        void addLand(Land land);
-        void deleteLand(int landId);
-        Task<Land> findLandAsync(int id);
-        Task<IList<Land>> getLandsAsync();
+        void AddLand(Land land);
+        void DeleteLand(int landId);
+        Task<Land> FindLandAsync(int id);
+        Task<IList<Land>> GetLandsAsync();
     }
 }

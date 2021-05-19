@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addCategory(Category category)
+        public void AddCategory(Category category)
         {
             dc.Categories.Add(category);
         }
 
-        public void deleteCategory(int categoryId)
+        public void DeleteCategory(int categoryId)
         {
             var id = dc.Categories.Find(categoryId);
             dc.Categories.Remove(id);
         }
 
-        public async Task<Category> findCategoryAsync(int id)
+        public async Task<Category> FindCategoryAsync(int id)
         {
             return await dc.Categories
                   .Include(m => m.Posts)
                   .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Category>> getCategoriesAsync()
+        public async Task<IList<Category>> GetCategoriesAsync()
         {
             return await dc.Categories
                 .Include(m => m.Posts)
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface ICategoryRepository
     {
-        void addCategory(Category category);
-        void deleteCategory(int categoryId);
-        Task<Category> findCategoryAsync(int id);
-        Task<IList<Category>> getCategoriesAsync();
+        void AddCategory(Category category);
+        void DeleteCategory(int categoryId);
+        Task<Category> FindCategoryAsync(int id);
+        Task<IList<Category>> GetCategoriesAsync();
     }
 }

@@ -8,6 +8,8 @@ namespace Traveltech.Models.Data
 {
     public interface IUnitOfWork
     {
+        ITimeFormatRepository TimeFormatRepository { get; }
+        IHeaderRepository HeaderRepository { get; }
         ILanguageRepository LanguageRepository { get; }
         IClientRepository ClientRepository { get; }
         IUserRepository UserRepository { get; }
@@ -35,6 +37,11 @@ namespace Traveltech.Models.Data
         {
             this.dc = dc;
         }
+        public IHeaderRepository HeaderRepository =>
+         new HeaderRepository(dc);
+        public ITimeFormatRepository TimeFormatRepository =>
+        new TimeFormatRepository(dc);
+
         public ILanguageRepository LanguageRepository =>
          new LanguageRepository(dc);
         public IDateFormatRepository DateFormatRepository =>

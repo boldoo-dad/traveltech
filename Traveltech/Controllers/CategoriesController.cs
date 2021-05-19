@@ -29,14 +29,14 @@ namespace Traveltech.Controllers
         [HttpGet]
         public async Task<IActionResult> GetCategories()
         {
-            var categories = await uow.CategoryRepository.getCategoriesAsync();
+            var categories = await uow.CategoryRepository.GetCategoriesAsync();
             var categoriesDto = mapper.Map<IList<CategoryDto>>(categories);
             return Ok(categoriesDto);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategories(int id)
         {
-            var categoryFromDb = await uow.CategoryRepository.findCategoryAsync(id);
+            var categoryFromDb = await uow.CategoryRepository.FindCategoryAsync(id);
             var categoryDto = mapper.Map<CategoryDto>(categoryFromDb);
             return Ok(categoryDto);
         }
@@ -47,11 +47,11 @@ namespace Traveltech.Controllers
             categoryDto.Posts = new List<PostDto>();
 
             var categories = mapper.Map<Category>(categoryDto);
-            uow.CategoryRepository.addCategory(categories);
+            uow.CategoryRepository.AddCategory(categories);
 
             foreach (var post in postsFromDto)
             {
-                var post1 = uow.PostRepository.findPostAsync(post.Id).Result;
+                var post1 = uow.PostRepository.FindPostAsync(post.Id).Result;
                 categories.Posts.Add(post1);
                 post1.Categories.Add(categories);
             }
@@ -64,7 +64,7 @@ namespace Traveltech.Controllers
         {
             if (id != categoryDto.Id)
                 return BadRequest("Update not allowed");
-            var categoryFromDb = await uow.CategoryRepository.findCategoryAsync(id);
+            var categoryFromDb = await uow.CategoryRepository.FindCategoryAsync(id);
             if (categoryFromDb == null)
                 return BadRequest("Update not allowed");
 
@@ -74,7 +74,7 @@ namespace Traveltech.Controllers
             var categories = mapper.Map(categoryDto, categoryFromDb);
             foreach (var post in postsFromDto)
             {
-                var post1 = uow.PostRepository.findPostAsync(post.Id).Result;
+                var post1 = uow.PostRepository.FindPostAsync(post.Id).Result;
                 categories.Posts.Add(post1);
                 post1.Categories.Add(categories);
             }
@@ -84,10 +84,10 @@ namespace Traveltech.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategories(int id)
         {
-            var categoryFromDb = await uow.CategoryRepository.findCategoryAsync(id);
+            var categoryFromDb = await uow.CategoryRepository.FindCategoryAsync(id);
             if (categoryFromDb == null)
                 return StatusCode(204);
-            uow.CategoryRepository.deleteCategory(id);
+            uow.CategoryRepository.DeleteCategory(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -97,14 +97,14 @@ namespace Traveltech.Controllers
         [HttpGet("Posts")]
         public async Task<IActionResult> GetPosts()
         {
-            var posts = await uow.PostRepository.getPostsAsync();
+            var posts = await uow.PostRepository.GetPostsAsync();
             var postsDto = mapper.Map<IList<PostDto>>(posts);
             return Ok(postsDto);
         }
         [HttpGet("Posts/{id}")]
         public async Task<IActionResult> GetPosts(int id)
         {
-            var postFromDb = await uow.PostRepository.findPostAsync(id);
+            var postFromDb = await uow.PostRepository.FindPostAsync(id);
             var postDto = mapper.Map<PostDto>(postFromDb);
             return Ok(postDto);
         }
@@ -112,7 +112,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostPosts(PostDto postDto)
         {
             var posts = mapper.Map<Post>(postDto);
-            uow.PostRepository.addPost(posts);
+            uow.PostRepository.AddPost(posts);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -121,7 +121,7 @@ namespace Traveltech.Controllers
         {
             if (id != postDto.Id)
                 return BadRequest("Update not allowed");
-            var postFromDb = await uow.PostRepository.findPostAsync(id);
+            var postFromDb = await uow.PostRepository.FindPostAsync(id);
             if (postFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(postDto, postFromDb);
@@ -131,10 +131,10 @@ namespace Traveltech.Controllers
         [HttpDelete("Posts/{id}")]
         public async Task<IActionResult> DeletePosts(int id)
         {
-            var postFromDb = await uow.PostRepository.findPostAsync(id);
+            var postFromDb = await uow.PostRepository.FindPostAsync(id);
             if (postFromDb == null)
                 return StatusCode(204);
-            uow.PostRepository.deletePost(id);
+            uow.PostRepository.DeletePost(id);
             await uow.SaveAsync();
             return Ok(id);
         }

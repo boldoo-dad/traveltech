@@ -14,33 +14,33 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addAddress(Address address)
+        public void AddAddress(Address address)
         {
             dc.Addresses.Add(address);
         }
 
-        public void deleteAddress(int addressId)
+        public void DeleteAddress(int addressId)
         {
             var id = dc.Addresses.Find(addressId);
             dc.Addresses.Remove(id);
         }
 
 
-        public async Task<Address> findAddressAsync(int id)
+        public async Task<Address> FindAddressAsync(int id)
         {
             return await dc.Addresses.FindAsync(id);
         }
 
-        public async Task<IList<Address>> getAddressesAsync()
+        public async Task<IList<Address>> GetAddressesAsync()
         {
             return await dc.Addresses.ToListAsync();
         }
     }
     public interface IAddressRepository
     {
-        void addAddress(Address address);
-        void deleteAddress(int addressId);
-        Task<Address> findAddressAsync(int id);
-        Task<IList<Address>> getAddressesAsync();
+        void AddAddress(Address address);
+        void DeleteAddress(int addressId);
+        Task<Address> FindAddressAsync(int id);
+        Task<IList<Address>> GetAddressesAsync();
     }
 }

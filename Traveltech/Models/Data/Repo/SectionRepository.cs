@@ -14,32 +14,32 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addSection(Section section)
+        public void AddSection(Section section)
         {
             dc.Sections.Add(section);
         }
 
-        public void deleteSection(int sectionId)
+        public void DeleteSection(int sectionId)
         {
             var id = dc.Sections.Find(sectionId);
             dc.Sections.Remove(id);
         }
 
-        public async Task<Section> findSectionAsync(int id)
+        public async Task<Section> FindSectionAsync(int id)
         {
             return await dc.Sections.FindAsync(id);
         }
 
-        public async Task<IList<Section>> getSectionsAsync()
+        public async Task<IList<Section>> GetSectionsAsync()
         {
             return await dc.Sections.ToListAsync();
         }
     }
     public interface ISectionRepository
     {
-        void addSection(Section section);
-        void deleteSection(int sectionId);
-        Task<Section> findSectionAsync(int id);
-        Task<IList<Section>> getSectionsAsync();
+        void AddSection(Section section);
+        void DeleteSection(int sectionId);
+        Task<Section> FindSectionAsync(int id);
+        Task<IList<Section>> GetSectionsAsync();
     }
 }

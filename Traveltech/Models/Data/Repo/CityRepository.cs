@@ -14,31 +14,31 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addCity(City city)
+        public void AddCity(City city)
         {
             dc.Cities.Add(city);
         }
 
-        public void deleteCity(int cityId)
+        public void DeleteCity(int cityId)
         {
             var id = dc.Cities.Find(cityId);
             dc.Cities.Remove(id);
         }
 
-        public async Task<City> findCityAsync(int id)
+        public async Task<City> FindCityAsync(int id)
         {
             return await dc.Cities.FindAsync(id);
         }
-        public async Task<IList<City>> getCitiesAsync()
+        public async Task<IList<City>> GetCitiesAsync()
         {
             return await dc.Cities.ToListAsync();
         }
     }
     public interface ICityRepository
     {
-        void addCity(City city);
-        void deleteCity(int cityId);
-        Task<City> findCityAsync(int id);
-        Task<IList<City>> getCitiesAsync();
+        void AddCity(City city);
+        void DeleteCity(int cityId);
+        Task<City> FindCityAsync(int id);
+        Task<IList<City>> GetCitiesAsync();
     }
 }

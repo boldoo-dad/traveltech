@@ -14,33 +14,33 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addSumbol(Sumbol sumbol)
+        public void AddSumbol(Sumbol sumbol)
         {
             dc.Sumbols.Add(sumbol);
         }
 
-        public void deleteSumbol(int sumbolId)
+        public void DeleteSumbol(int sumbolId)
         {
             var id = dc.Sumbols.Find(sumbolId);
             dc.Sumbols.Remove(id);
         }
 
 
-        public async Task<Sumbol> findSumbolAsync(int id)
+        public async Task<Sumbol> FindSumbolAsync(int id)
         {
             return await dc.Sumbols.FindAsync(id);
         }
 
-        public async Task<IList<Sumbol>> getSumbolsAsync()
+        public async Task<IList<Sumbol>> GetSumbolsAsync()
         {
             return await dc.Sumbols.ToListAsync();
         }
     }
     public interface ISumbolRepository
     {
-        void addSumbol(Sumbol sumbol);
-        void deleteSumbol(int sumbolId);
-        Task<Sumbol> findSumbolAsync(int id);
-        Task<IList<Sumbol>> getSumbolsAsync();
+        void AddSumbol(Sumbol sumbol);
+        void DeleteSumbol(int sumbolId);
+        Task<Sumbol> FindSumbolAsync(int id);
+        Task<IList<Sumbol>> GetSumbolsAsync();
     }
 }

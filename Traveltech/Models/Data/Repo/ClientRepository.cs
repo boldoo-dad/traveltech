@@ -14,18 +14,18 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addClient(Client client)
+        public void AddClient(Client client)
         {
             dc.Clients.Add(client);
         }
 
-        public void deleteClient(int clientId)
+        public void DeleteClient(int clientId)
         {
             var id = dc.Clients.Find(clientId);
             dc.Clients.Remove(id);
         }
 
-        public async Task<Client> findClientAsync(int id)
+        public async Task<Client> FindClientAsync(int id)
         {
             return await dc.Clients
                 .Include("WebSites.Users")
@@ -33,19 +33,19 @@ namespace Traveltech.Models.Data.Repo
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Client>> getClientsAsync()
+        public async Task<IList<Client>> GetClientsAsync()
         {
             return await dc.Clients
-               .Include("WebSites.Users")
+               .Include("WebSites.Users")   
                .Include(m => m.Users)
                .ToListAsync();
         }
     }
     public interface IClientRepository
     {
-        void addClient(Client client);
-        void deleteClient(int clientId);
-        Task<Client> findClientAsync(int id);
-        Task<IList<Client>> getClientsAsync();
+        void AddClient(Client client);
+        void DeleteClient(int clientId);
+        Task<Client> FindClientAsync(int id);
+        Task<IList<Client>> GetClientsAsync();
     }
 }

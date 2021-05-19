@@ -28,14 +28,14 @@ namespace Traveltech.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSumbols()
         {
-            var sumbols = await uow.SumbolRepository.getSumbolsAsync();
+            var sumbols = await uow.SumbolRepository.GetSumbolsAsync();
             var sumbolsDto = mapper.Map<IList<SumbolDto>>(sumbols);
             return Ok(sumbolsDto);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSumbols(int id)
         {
-            var sumbolFromDb = await uow.SumbolRepository.findSumbolAsync(id);
+            var sumbolFromDb = await uow.SumbolRepository.FindSumbolAsync(id);
             var sumbolDto = mapper.Map<SumbolDto>(sumbolFromDb);
             return Ok(sumbolDto);
         }
@@ -43,7 +43,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostSumbols(SumbolDto sumbolDto)
         {
             var sumbol = mapper.Map<Sumbol>(sumbolDto);
-            uow.SumbolRepository.addSumbol(sumbol);
+            uow.SumbolRepository.AddSumbol(sumbol);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -52,7 +52,7 @@ namespace Traveltech.Controllers
         {
             if (id != sumbolDto.Id)
                 return BadRequest("Update not allowed");
-            var sumbolFromDb = await uow.SumbolRepository.findSumbolAsync(id);
+            var sumbolFromDb = await uow.SumbolRepository.FindSumbolAsync(id);
             if (sumbolFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(sumbolDto, sumbolFromDb);
@@ -62,10 +62,10 @@ namespace Traveltech.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSumbols(int id)
         {
-            var sumbolFromDb = await uow.SumbolRepository.findSumbolAsync(id);
+            var sumbolFromDb = await uow.SumbolRepository.FindSumbolAsync(id);
             if (sumbolFromDb == null)
                 return StatusCode(204);
-            uow.SumbolRepository.deleteSumbol(id);
+            uow.SumbolRepository.DeleteSumbol(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -75,14 +75,14 @@ namespace Traveltech.Controllers
         [HttpGet("SocialMedias")]
         public async Task<IActionResult> GetSocialMedias()
         {
-            var socialmedias = await uow.SocialMediaRepository.getSocialMediasAsync();
+            var socialmedias = await uow.SocialMediaRepository.GetSocialMediasAsync();
             var socialmediasDto = mapper.Map<IList<SocialMediaDto>>(socialmedias);
             return Ok(socialmediasDto);
         }
         [HttpGet("SocialMedias/{id}")]
         public async Task<IActionResult> GetSocialMedias(int id)
         {
-            var socialmediaFromDb = await uow.SocialMediaRepository.findSocialMediaAsync(id);
+            var socialmediaFromDb = await uow.SocialMediaRepository.FindSocialMediaAsync(id);
             var socialmediaDto = mapper.Map<SocialMediaDto>(socialmediaFromDb);
             return Ok(socialmediaDto);
         }
@@ -90,7 +90,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostSocialMedias(SocialMediaDto socialMediaDto)
         {
             var socialMedia = mapper.Map<SocialMedia>(socialMediaDto);
-            uow.SocialMediaRepository.addSocialMedia(socialMedia);
+            uow.SocialMediaRepository.AddSocialMedia(socialMedia);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -99,7 +99,7 @@ namespace Traveltech.Controllers
         {
             if (id != socialMediaDto.Id)
                 return BadRequest("Update not allowed");
-            var socialmediaFromDb = await uow.SocialMediaRepository.findSocialMediaAsync(id);
+            var socialmediaFromDb = await uow.SocialMediaRepository.FindSocialMediaAsync(id);
             if (socialmediaFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(socialMediaDto, socialmediaFromDb);
@@ -109,10 +109,10 @@ namespace Traveltech.Controllers
         [HttpDelete("SocialMedias/{id}")]
         public async Task<IActionResult> DeleteSocialMedias(int id)
         {
-            var socialmediaFromDb = await uow.SocialMediaRepository.findSocialMediaAsync(id);
+            var socialmediaFromDb = await uow.SocialMediaRepository.FindSocialMediaAsync(id);
             if (socialmediaFromDb == null)
                 return StatusCode(204);
-            uow.SocialMediaRepository.deleteSocialMedia(id);
+            uow.SocialMediaRepository.DeleteSocialMedia(id);
             await uow.SaveAsync();
             return Ok(id);
         }

@@ -14,32 +14,32 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addUser(User user)
+        public void AddUser(User user)
         {
             dc.Users.Add(user);
         }
 
-        public void deleteUser(int userId)
+        public void DeleteUser(int userId)
         {
             var id = dc.Users.Find(userId);
             dc.Users.Remove(id);
         }
 
-        public async Task<User> findUserAsync(int id)
+        public async Task<User> FindUserAsync(int id)
         {
             return await dc.Users.FindAsync(id);
         }
 
-        public async Task<IList<User>> getUsersAsync()
+        public async Task<IList<User>> GetUsersAsync()
         {
             return await dc.Users.ToListAsync();
         }
     }
     public interface IUserRepository
     {
-        void addUser(User user);
-        void deleteUser(int userId);
-        Task<User> findUserAsync(int id);
-        Task<IList<User>> getUsersAsync();
+        void AddUser(User user);
+        void DeleteUser(int userId);
+        Task<User> FindUserAsync(int id);
+        Task<IList<User>> GetUsersAsync();
     }
 }

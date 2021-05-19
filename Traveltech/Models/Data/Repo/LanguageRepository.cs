@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addLanguage(Language language)
+        public void AddLanguage(Language language)
         {
             dc.Languages.Add(language);
         }
 
-        public void deleteLanguage(int languageId)
+        public void DeleteLanguage(int languageId)
         {
             var id = dc.Languages.Find(languageId);
             dc.Languages.Remove(id);
         }
 
-        public async Task<Language> findLanguageAsync(int id)
+        public async Task<Language> FindLanguageAsync(int id)
         {
             return await dc.Languages
                  .Include("Websites.Users")
                  .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Language>> getLanguages()
+        public async Task<IList<Language>> GetLanguages()
         {
             return await dc.Languages
                 .Include("Websites.Users")
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface ILanguageRepository
     {
-        void addLanguage(Language language);
-        void deleteLanguage(int languageId);
-        Task<Language> findLanguageAsync(int id);
-        Task<IList<Language>> getLanguages();
+        void AddLanguage(Language language);
+        void DeleteLanguage(int languageId);
+        Task<Language> FindLanguageAsync(int id);
+        Task<IList<Language>> GetLanguages();
     }
 }

@@ -14,24 +14,24 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addPost(Post post)
+        public void AddPost(Post post)
         {
             dc.Posts.Add(post);
         }
 
-        public void deletePost(int postId)
+        public void DeletePost(int postId)
         {
             var id = dc.Posts.Find(postId);
             dc.Posts.Remove(id);
         }
 
-        public async Task<Post> findPostAsync(int id)
+        public async Task<Post> FindPostAsync(int id)
         {
             return await dc.Posts
                  .Include(m => m.Categories)
                  .FirstOrDefaultAsync(m => m.Id == id);
         }
-        public async Task<IList<Post>> getPostsAsync()
+        public async Task<IList<Post>> GetPostsAsync()
         {
             return await dc.Posts
                 .Include(m => m.Categories)
@@ -40,9 +40,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IPostRepository
     {
-        void addPost(Post post);
-        void deletePost(int postId);
-        Task<Post> findPostAsync(int id);
-        Task<IList<Post>> getPostsAsync();
+        void AddPost(Post post);
+        void DeletePost(int postId);
+        Task<Post> FindPostAsync(int id);
+        Task<IList<Post>> GetPostsAsync();
     }
 }

@@ -29,14 +29,14 @@ namespace Traveltech.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAddresses()
         {
-            var addresses = await uow.AddressRepository.getAddressesAsync();
+            var addresses = await uow.AddressRepository.GetAddressesAsync();
             var addressesDto = mapper.Map<IList<AddressDto>>(addresses);
             return Ok(addressesDto);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAddresses(int id)
         {
-            var addressFromDb = await uow.AddressRepository.findAddressAsync(id);
+            var addressFromDb = await uow.AddressRepository.FindAddressAsync(id);
             var addressDto = mapper.Map<AddressDto>(addressFromDb);
             return Ok(addressDto);
         }
@@ -44,7 +44,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostAddresses(AddressDto addressDto)
         {
             var address = mapper.Map<Address>(addressDto);
-            uow.AddressRepository.addAddress(address);
+            uow.AddressRepository.AddAddress(address);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -53,7 +53,7 @@ namespace Traveltech.Controllers
         {
             if (id != addressDto.Id)
                 return BadRequest("Update not allowed");
-            var addressFromDb = await uow.AddressRepository.findAddressAsync(id);
+            var addressFromDb = await uow.AddressRepository.FindAddressAsync(id);
             if (addressFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(addressDto, addressFromDb);
@@ -63,10 +63,10 @@ namespace Traveltech.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAddresses(int id)
         {
-            var addressFromDb = await uow.AddressRepository.findAddressAsync(id);
+            var addressFromDb = await uow.AddressRepository.FindAddressAsync(id);
             if (addressFromDb == null)
                 return StatusCode(204);
-            uow.AddressRepository.deleteAddress(id);
+            uow.AddressRepository.DeleteAddress(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -76,14 +76,14 @@ namespace Traveltech.Controllers
         [HttpGet("Cities")]
         public async Task<IActionResult> GetCities()
         {
-            var cities = await uow.CityRepository.getCitiesAsync();
+            var cities = await uow.CityRepository.GetCitiesAsync();
             var citiesDto = mapper.Map<IList<CityDto>>(cities);
             return Ok(citiesDto);
         }
         [HttpGet("Cities/{id}")]
         public async Task<IActionResult> GetCities(int id)
         {
-            var cityFromDb = await uow.CityRepository.findCityAsync(id);
+            var cityFromDb = await uow.CityRepository.FindCityAsync(id);
             var cityDto = mapper.Map<CityDto>(cityFromDb);
             return Ok(cityDto);
         }
@@ -91,7 +91,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostCities(CityDto cityDto)
         {
             var city = mapper.Map<City>(cityDto);
-            uow.CityRepository.addCity(city);
+            uow.CityRepository.AddCity(city);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -100,7 +100,7 @@ namespace Traveltech.Controllers
         {
             if (id != cityDto.Id)
                 return BadRequest("Update not allowed");
-            var cityFromDb = await uow.CityRepository.findCityAsync(id);
+            var cityFromDb = await uow.CityRepository.FindCityAsync(id);
             if (cityFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(cityDto, cityFromDb);
@@ -110,10 +110,10 @@ namespace Traveltech.Controllers
         [HttpDelete("Cities/{id}")]
         public async Task<IActionResult> DeleteCities(int id)
         {
-            var cityFromDb = await uow.CityRepository.findCityAsync(id);
+            var cityFromDb = await uow.CityRepository.FindCityAsync(id);
             if (cityFromDb == null)
                 return StatusCode(204);
-            uow.CityRepository.deleteCity(id);
+            uow.CityRepository.DeleteCity(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -123,14 +123,14 @@ namespace Traveltech.Controllers
         [HttpGet("States")]
         public async Task<IActionResult> GetStates()
         {
-            var states = await uow.StateRepository.getStatesAsync();
+            var states = await uow.StateRepository.GetStatesAsync();
             var statesDto = mapper.Map<IList<StateDto>>(states);
             return Ok(statesDto);
         }
         [HttpGet("States/{id}")]
         public async Task<IActionResult> GetStates(int id)
         {
-            var stateFromDb = await uow.StateRepository.findStateAsync(id);
+            var stateFromDb = await uow.StateRepository.FindStateAsync(id);
             var stateDto = mapper.Map<StateDto>(stateFromDb);
             return Ok(stateDto);
         }
@@ -138,7 +138,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostStates(StateDto stateDto)
         {
             var state = mapper.Map<State>(stateDto);
-            uow.StateRepository.addState(state);
+            uow.StateRepository.AddState(state);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -147,7 +147,7 @@ namespace Traveltech.Controllers
         {
             if (id != stateDto.Id)
                 return BadRequest("Update not allowed");
-            var stateFromDb = await uow.StateRepository.findStateAsync(id);
+            var stateFromDb = await uow.StateRepository.FindStateAsync(id);
             if (stateFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(stateDto, stateFromDb);
@@ -157,10 +157,10 @@ namespace Traveltech.Controllers
         [HttpDelete("States/{id}")]
         public async Task<IActionResult> DeleteStates(int id)
         {
-            var stateFromDb = await uow.StateRepository.findStateAsync(id);
+            var stateFromDb = await uow.StateRepository.FindStateAsync(id);
             if (stateFromDb == null)
                 return StatusCode(204);
-            uow.StateRepository.deleteState(id);
+            uow.StateRepository.DeleteState(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -170,14 +170,14 @@ namespace Traveltech.Controllers
         [HttpGet("Lands")]
         public async Task<IActionResult> GetLands()
         {
-            var lands = await uow.LandRepository.getLandsAsync();
+            var lands = await uow.LandRepository.GetLandsAsync();
             var landsDto = mapper.Map<IList<LandDto>>(lands);
             return Ok(landsDto);
         }
         [HttpGet("Lands/{id}")]
         public async Task<IActionResult> GetLands(int id)
         {
-            var landFromDb = await uow.LandRepository.findLandAsync(id);
+            var landFromDb = await uow.LandRepository.FindLandAsync(id);
             var landDto = mapper.Map<LandDto>(landFromDb);
             return Ok(landDto);
         }
@@ -185,7 +185,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostLands(LandDto landDto)
         {
             var land = mapper.Map<Land>(landDto);
-            uow.LandRepository.addLand(land);
+            uow.LandRepository.AddLand(land);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -194,7 +194,7 @@ namespace Traveltech.Controllers
         {
             if (id != landDto.Id)
                 return BadRequest("Update not allowed");
-            var landFromDb = await uow.LandRepository.findLandAsync(id);
+            var landFromDb = await uow.LandRepository.FindLandAsync(id);
             if (landFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(landDto, landFromDb);
@@ -204,10 +204,10 @@ namespace Traveltech.Controllers
         [HttpDelete("Lands/{id}")]
         public async Task<IActionResult> DeleteLands(int id)
         {
-            var landFromDb = await uow.LandRepository.findLandAsync(id);
+            var landFromDb = await uow.LandRepository.FindLandAsync(id);
             if (landFromDb == null)
                 return StatusCode(204);
-            uow.LandRepository.deleteLand(id);
+            uow.LandRepository.DeleteLand(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -217,14 +217,14 @@ namespace Traveltech.Controllers
         [HttpGet("Contacts")]
         public async Task<IActionResult> GetContacts()
         {
-            var contacts = await uow.ContactRepository.getContactsAsync();
+            var contacts = await uow.ContactRepository.GetContactsAsync();
             var contactsDto = mapper.Map<IList<ContactDto>>(contacts);
             return Ok(contactsDto);
         }
         [HttpGet("Contacts/{id}")]
         public async Task<IActionResult> GetContacts(int id)
         {
-            var contactFromDb = await uow.ContactRepository.findContactAsync(id);
+            var contactFromDb = await uow.ContactRepository.FindContactAsync(id);
             var contactDto = mapper.Map<ContactDto>(contactFromDb);
             return Ok(contactDto);
         }
@@ -232,7 +232,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostContacts(ContactDto contactDto)
         {
             var contact = mapper.Map<Contact>(contactDto);
-            uow.ContactRepository.addContact(contact);
+            uow.ContactRepository.AddContact(contact);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -241,7 +241,7 @@ namespace Traveltech.Controllers
         {
             if (id != contactDto.Id)
                 return BadRequest("Update not allowed");
-            var contactFromDb = await uow.ContactRepository.findContactAsync(id);
+            var contactFromDb = await uow.ContactRepository.FindContactAsync(id);
             if (contactFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(contactDto, contactFromDb);
@@ -251,10 +251,10 @@ namespace Traveltech.Controllers
         [HttpDelete("Contacts/{id}")]
         public async Task<IActionResult> DeleteContacts(int id)
         {
-            var contactFromDb = await uow.ContactRepository.findContactAsync(id);
+            var contactFromDb = await uow.ContactRepository.FindContactAsync(id);
             if (contactFromDb == null)
                 return StatusCode(204);
-            uow.ContactRepository.deleteContact(id);
+            uow.ContactRepository.DeleteContact(id);
             await uow.SaveAsync();
             return Ok(id);
         }

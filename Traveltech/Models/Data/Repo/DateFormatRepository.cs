@@ -15,25 +15,25 @@ namespace Traveltech.Models.Data.Repo
             this.dc = dc;
         }
 
-        public void addDateFormat(DateFormat dateFormat)
+        public void AddDateFormat(DateFormat dateFormat)
         {
             dc.DateFormats.Add(dateFormat);
         }
 
-        public void deleteDateFormat(int dateFormatId)
+        public void DeleteDateFormat(int dateFormatId)
         {
             var id = dc.DateFormats.Find(dateFormatId);
             dc.DateFormats.Remove(id);
         }
 
-        public async Task<DateFormat> findDateFormatAsync(int id)
+        public async Task<DateFormat> FindDateFormatAsync(int id)
         {
             return await dc.DateFormats
                 .Include("WebSites.Users")
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<DateFormat>> getDateFormats()
+        public async Task<IList<DateFormat>> GetDateFormats()
         {
             return await dc.DateFormats
                 .Include("WebSites.Users")
@@ -42,9 +42,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IDateFormatRepository
     {
-        void addDateFormat(DateFormat dateFormat);
-        void deleteDateFormat(int dateFormatId);
-        Task<DateFormat> findDateFormatAsync(int id);
-        Task<IList<DateFormat>> getDateFormats();
+        void AddDateFormat(DateFormat dateFormat);
+        void DeleteDateFormat(int dateFormatId);
+        Task<DateFormat> FindDateFormatAsync(int id);
+        Task<IList<DateFormat>> GetDateFormats();
     }
 }

@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addWebSite(WebSite webSite)
+        public void AddWebSite(WebSite webSite)
         {
             dc.WebSites.Add(webSite);
         }
 
-        public void deleteWebSite(int webSiteId)
+        public void DeleteWebSite(int webSiteId)
         {
             var id = dc.WebSites.Find(webSiteId);
             dc.WebSites.Remove(id);
         }
 
-        public async Task<WebSite> findWebSiteAsync(int id)
+        public async Task<WebSite> FindWebSiteAsync(int id)
         {
             return await dc.WebSites
                 .Include(m => m.Users)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<WebSite>> getWebSitesAsync()
+        public async Task<IList<WebSite>> GetWebSitesAsync()
         {
             return await dc.WebSites
                 .Include(m => m.Users)
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IWebSiteRepository
     {
-        void addWebSite(WebSite webSite);
-        void deleteWebSite(int webSiteId);
-        Task<WebSite> findWebSiteAsync(int id);
-        Task<IList<WebSite>> getWebSitesAsync();
+        void AddWebSite(WebSite webSite);
+        void DeleteWebSite(int webSiteId);
+        Task<WebSite> FindWebSiteAsync(int id);
+        Task<IList<WebSite>> GetWebSitesAsync();
     }
 }

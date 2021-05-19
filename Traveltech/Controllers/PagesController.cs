@@ -28,14 +28,14 @@ namespace Traveltech.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPages()
         {
-            var pages = await uow.PageRepository.getPagesAsync();
+            var pages = await uow.PageRepository.GetPagesAsync();
             var pagesDto = mapper.Map<IList<PageDto>>(pages);
             return Ok(pagesDto);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetPages(int id)
         {
-            var pageFromDb = await uow.PageRepository.findPageAsync(id);
+            var pageFromDb = await uow.PageRepository.FindPageAsync(id);
             var pageDto = mapper.Map<PageDto>(pageFromDb);
             return Ok(pageDto);
         }
@@ -43,7 +43,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostPages(PageDto pageDto)
         {
             var page = mapper.Map<Page>(pageDto);
-            uow.PageRepository.addPage(page);
+            uow.PageRepository.AddPage(page);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -52,7 +52,7 @@ namespace Traveltech.Controllers
         {
             if (id != pageDto.Id)
                 return BadRequest("Update not allowed");
-            var pageFromDb = await uow.PageRepository.findPageAsync(id);
+            var pageFromDb = await uow.PageRepository.FindPageAsync(id);
             if (pageFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(pageDto, pageFromDb);
@@ -62,10 +62,10 @@ namespace Traveltech.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePages(int id)
         {
-            var pageFromDb = await uow.PageRepository.findPageAsync(id);
+            var pageFromDb = await uow.PageRepository.FindPageAsync(id);
             if (pageFromDb == null)
                 return StatusCode(204);
-            uow.PageRepository.deletePage(id);
+            uow.PageRepository.DeletePage(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -75,14 +75,14 @@ namespace Traveltech.Controllers
         [HttpGet("Sections")]
         public async Task<IActionResult> GetSections()
         {
-            var sections = await uow.SectionRepository.getSectionsAsync();
+            var sections = await uow.SectionRepository.GetSectionsAsync();
             var sectionsDto = mapper.Map<IList<SectionDto>>(sections);
             return Ok(sectionsDto);
         }
         [HttpGet("Sections/{id}")]
         public async Task<IActionResult> GetSections(int id)
         {
-            var sectionFromDb = await uow.SectionRepository.findSectionAsync(id);
+            var sectionFromDb = await uow.SectionRepository.FindSectionAsync(id);
             var sectionDto = mapper.Map<SectionDto>(sectionFromDb);
             return Ok(sectionDto);
         }
@@ -90,7 +90,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostSections(SectionDto sectionDto)
         {
             var section = mapper.Map<Section>(sectionDto);
-            uow.SectionRepository.addSection(section);
+            uow.SectionRepository.AddSection(section);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -99,7 +99,7 @@ namespace Traveltech.Controllers
         {
             if (id != sectionDto.Id)
                 return BadRequest("Update not allowed");
-            var sectionFromDb = await uow.SectionRepository.findSectionAsync(id);
+            var sectionFromDb = await uow.SectionRepository.FindSectionAsync(id);
             if (sectionFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(sectionDto, sectionFromDb);
@@ -109,10 +109,10 @@ namespace Traveltech.Controllers
         [HttpDelete("Sections/{id}")]
         public async Task<IActionResult> DeleteSections(int id)
         {
-            var sectionFromDb = await uow.SectionRepository.findSectionAsync(id);
+            var sectionFromDb = await uow.SectionRepository.FindSectionAsync(id);
             if (sectionFromDb == null)
                 return StatusCode(204);
-            uow.SectionRepository.deleteSection(id);
+            uow.SectionRepository.DeleteSection(id);
             await uow.SaveAsync();
             return Ok(id);
         }
@@ -122,14 +122,14 @@ namespace Traveltech.Controllers
         [HttpGet("HomePages")]
         public async Task<IActionResult> GetHomePages()
         {
-            var homePages = await uow.HomePagesRepository.getHomePagesAsync();
+            var homePages = await uow.HomePagesRepository.GetHomePagesAsync();
             var homePagesDto = mapper.Map<IList<HomePageDto>>(homePages);
             return Ok(homePagesDto);
         }
         [HttpGet("HomePages/{id}")]
         public async Task<IActionResult> GetHomePages(int id)
         {
-            var homepageFromDb = await uow.HomePagesRepository.findHomePageAsync(id);
+            var homepageFromDb = await uow.HomePagesRepository.FindHomePageAsync(id);
             var homepageDto = mapper.Map<HomePageDto>(homepageFromDb);
             return Ok(homepageDto);
         }
@@ -137,7 +137,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> PostHomePages(HomePageDto homePageDto)
         {
             var homepage = mapper.Map<HomePage>(homePageDto);
-            uow.HomePagesRepository.addHomePage(homepage);
+            uow.HomePagesRepository.AddHomePage(homepage);
             await uow.SaveAsync();
             return StatusCode(201);
         }
@@ -146,7 +146,7 @@ namespace Traveltech.Controllers
         {
             if (id != homePageDto.Id)
                 return BadRequest("Update not allowed");
-            var homepageFromDb = await uow.HomePagesRepository.findHomePageAsync(id);
+            var homepageFromDb = await uow.HomePagesRepository.FindHomePageAsync(id);
             if (homepageFromDb == null)
                 return BadRequest("Update not allowed");
             mapper.Map(homePageDto, homepageFromDb);
@@ -156,10 +156,10 @@ namespace Traveltech.Controllers
         [HttpDelete("HomePages/{id}")]
         public async Task<IActionResult> DeleteHomePages(int id)
         {
-            var homepageFromDb = await uow.HomePagesRepository.findHomePageAsync(id);
+            var homepageFromDb = await uow.HomePagesRepository.FindHomePageAsync(id);
             if (homepageFromDb == null)
                 return StatusCode(204);
-            uow.HomePagesRepository.deleteHomePage(id);
+            uow.HomePagesRepository.DeleteHomePage(id);
             await uow.SaveAsync();
             return Ok(id);
         }

@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addState(State state)
+        public void AddState(State state)
         {
             dc.States.Add(state);
         }
 
-        public void deleteState(int stateId)
+        public void DeleteState(int stateId)
         {
             var id = dc.States.Find(stateId);
             dc.States.Remove(id);
         }
 
-        public async Task<State> findStateAsync(int id)
+        public async Task<State> FindStateAsync(int id)
         {
             return await dc.States
                  .Include(m => m.Cities)
                  .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<State>> getStatesAsync()
+        public async Task<IList<State>> GetStatesAsync()
         {
             return await dc.States
                 .Include(m => m.Cities)
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IStateRepository
     {
-        void addState(State state);
-        void deleteState(int stateId);
-        Task<State> findStateAsync(int id);
-        Task<IList<State>> getStatesAsync();
+        void AddState(State state);
+        void DeleteState(int stateId);
+        Task<State> FindStateAsync(int id);
+        Task<IList<State>> GetStatesAsync();
     }
 }

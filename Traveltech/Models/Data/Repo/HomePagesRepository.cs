@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addHomePage(HomePage homePage)
+        public void AddHomePage(HomePage homePage)
         {
             dc.HomePages.Add(homePage);
         }
 
-        public void deleteHomePage(int homePageId)
+        public void DeleteHomePage(int homePageId)
         {
             var id = dc.HomePages.Find(homePageId);
             dc.HomePages.Remove(id);
         }
 
-        public async Task<HomePage> findHomePageAsync(int id)
+        public async Task<HomePage> FindHomePageAsync(int id)
         {
             return await dc.HomePages
                 .Include(m => m.Sections)
                 .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<HomePage>> getHomePagesAsync()
+        public async Task<IList<HomePage>> GetHomePagesAsync()
         {
             return await dc.HomePages
                 .Include(m => m.Sections)
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IHomePagesRepository
     {
-        void addHomePage(HomePage homePage);
-        void deleteHomePage(int homePageId);
-        Task<HomePage> findHomePageAsync(int id);
-        Task<IList<HomePage>> getHomePagesAsync();
+        void AddHomePage(HomePage homePage);
+        void DeleteHomePage(int homePageId);
+        Task<HomePage> FindHomePageAsync(int id);
+        Task<IList<HomePage>> GetHomePagesAsync();
     }
 }

@@ -14,25 +14,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addPage(Page page)
+        public void AddPage(Page page)
         {
             dc.Pages.Add(page);
         }
 
-        public void deletePage(int pageId)
+        public void DeletePage(int pageId)
         {
             var id = dc.Pages.Find(pageId);
             dc.Pages.Remove(id);
         }
 
-        public async Task<Page> findPageAsync(int id)
+        public async Task<Page> FindPageAsync(int id)
         {
             return await dc.Pages
                  .Include(m => m.Sections)
                  .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Page>> getPagesAsync()
+        public async Task<IList<Page>> GetPagesAsync()
         {
             return await dc.Pages
                 .Include(m => m.Sections)
@@ -41,9 +41,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IPageRepository
     {
-        void addPage(Page page);
-        void deletePage(int pageId);
-        Task<Page> findPageAsync(int id);
-        Task<IList<Page>> getPagesAsync();
+        void AddPage(Page page);
+        void DeletePage(int pageId);
+        Task<Page> FindPageAsync(int id);
+        Task<IList<Page>> GetPagesAsync();
     }
 }

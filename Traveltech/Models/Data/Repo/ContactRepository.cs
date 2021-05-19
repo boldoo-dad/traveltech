@@ -15,25 +15,25 @@ namespace Traveltech.Models.Data.Repo
         {
             this.dc = dc;
         }
-        public void addContact(Contact contact)
+        public void AddContact(Contact contact)
         {
             dc.Contacts.Add(contact);
         }
 
-        public void deleteContact(int contactId)
+        public void DeleteContact(int contactId)
         {
             var id = dc.Contacts.Find(contactId);
             dc.Contacts.Remove(id);
         }
 
-        public async Task<Contact> findContactAsync(int id)
+        public async Task<Contact> FindContactAsync(int id)
         {
             return await dc.Contacts
                  .Include(m => m.Addresses)
                  .FirstOrDefaultAsync(m => m.Id == id);
         }
 
-        public async Task<IList<Contact>> getContactsAsync()
+        public async Task<IList<Contact>> GetContactsAsync()
         {
             return await dc.Contacts
                   .Include(m => m.Addresses)
@@ -42,9 +42,9 @@ namespace Traveltech.Models.Data.Repo
     }
     public interface IContactRepository
     {
-        void addContact(Contact contact);
-        void deleteContact(int contactId);
-        Task<Contact> findContactAsync(int id);
-        Task<IList<Contact>> getContactsAsync();
+        void AddContact(Contact contact);
+        void DeleteContact(int contactId);
+        Task<Contact> FindContactAsync(int id);
+        Task<IList<Contact>> GetContactsAsync();
     }
 }
