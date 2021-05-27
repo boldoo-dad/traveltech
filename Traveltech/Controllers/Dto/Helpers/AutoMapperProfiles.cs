@@ -1,8 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Traveltech.Models;
 using Traveltech.Models.Widgets;
 
@@ -12,6 +8,10 @@ namespace Traveltech.Controllers.Dto.Helpers
     {
         public AutoMapperProfiles()
         {
+            CreateMap<Position, PositionDto>().ReverseMap();
+            CreateMap<Footer, FooterDto>().ReverseMap();
+            CreateMap<MenuItem, MenuItemDto>().ReverseMap();
+            CreateMap<Menu, MenuDto>().ReverseMap();
             CreateMap<TimeFormat, TimeFormatDto>().ReverseMap();
             CreateMap<Header, HeaderDto>().ReverseMap();
             CreateMap<Language, LanguageDto>().ReverseMap();

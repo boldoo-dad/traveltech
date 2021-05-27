@@ -271,7 +271,7 @@ namespace Traveltech.Controllers
         public async Task<IActionResult> GetHeaders(int id)
         {
             var headerFromDb = await uow.HeaderRepository.FindHeaderAsync(id);
-            var headerDto = mapper.Map<LanguageDto>(headerFromDb);
+            var headerDto = mapper.Map<HeaderDto>(headerFromDb);
             return Ok(headerDto);
         }
         [HttpPost("Headers")]
@@ -349,6 +349,199 @@ namespace Traveltech.Controllers
             if (timeFormatFromDb == null)
                 return StatusCode(204);
             uow.TimeFormatRepository.DeleteTimeFormat(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
+
+        #region Menus
+        [HttpGet("Menus")]
+        public async Task<IActionResult> GetMenus()
+        {
+            var menus = await uow.MenuRepository.GetMenusAsync();
+            var menusDto = mapper.Map<IList<MenuDto>>(menus);
+            return Ok(menusDto);
+        }
+        [HttpGet("Menus/{id}")]
+        public async Task<IActionResult> GetMenus(int id)
+        {
+            var menuFromDb = await uow.MenuRepository.FindMenuAsync(id);
+            var menuDto = mapper.Map<MenuDto>(menuFromDb);
+            return Ok(menuDto);
+        }
+
+        [HttpPost("Menus")]
+        public async Task<IActionResult> PostMenus(MenuDto menuDto)
+        {
+            var menu = mapper.Map<Menu>(menuDto);
+            uow.MenuRepository.AddMenu(menu);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("Menus/{id}")]
+        public async Task<IActionResult> PutMenus(int id, MenuDto menuDto)
+        {
+            if (id != menuDto.Id)
+                return BadRequest("Update not allowed");
+            var menuFromDb = await uow.MenuRepository.FindMenuAsync(id);
+            if (menuFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(menuDto, menuFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("Menus/{id}")]
+        public async Task<IActionResult> DeleteMenus(int id)
+        {
+            var menuFromDb = await uow.MenuRepository.FindMenuAsync(id);
+            if (menuFromDb == null)
+                return StatusCode(204);
+            uow.MenuRepository.DeleteMenu(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
+
+        #region MenuItems
+        [HttpGet("MenuItems")]
+        public async Task<IActionResult> GetMenuItems()
+        {
+            var menuItems = await uow.MenuItemRepository.GetMenuItemsAsync();
+            var menuItemsDto = mapper.Map<IList<MenuItemDto>>(menuItems);
+            return Ok(menuItemsDto);
+        }
+        [HttpGet("MenuItems/{id}")]
+        public async Task<IActionResult> GetMenuItems(int id)
+        {
+            var menuItemFromDb = await uow.MenuItemRepository.FindMenuItemAsync(id);
+            var menuItemDto = mapper.Map<MenuItemDto>(menuItemFromDb);
+            return Ok(menuItemDto);
+        }
+        [HttpPost("MenuItems")]
+        public async Task<IActionResult> PostMenuItems(MenuItemDto menuItemDto)
+        {
+            var menuItem = mapper.Map<MenuItem>(menuItemDto);
+            uow.MenuItemRepository.AddMenuItem(menuItem);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("MenuItems/{id}")]
+        public async Task<IActionResult> PutMenuItems(int id, MenuItemDto menuItemDto)
+        {
+            if (id != menuItemDto.Id)
+                return BadRequest("Update not allowed");
+            var menuItemFromDb = await uow.MenuItemRepository.FindMenuItemAsync(id);
+            if (menuItemFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(menuItemDto, menuItemFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("MenuItems/{id}")]
+        public async Task<IActionResult> DeleteMenuItems(int id)
+        {
+            var menuItemFromDb = await uow.MenuItemRepository.FindMenuItemAsync(id);
+            if (menuItemFromDb == null)
+                return StatusCode(204);
+            uow.MenuItemRepository.DeleteMenuItem(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
+
+        #region Footers
+        [HttpGet("Footers")]
+        public async Task<IActionResult> GetFooters()
+        {
+            var footers = await uow.FooterRepository.GetFootersAsync();
+            var footersDto = mapper.Map<IList<FooterDto>>(footers);
+            return Ok(footersDto);
+        }
+        [HttpGet("Footers/{id}")]
+        public async Task<IActionResult> GetFooters(int id)
+        {
+            var footerFromDb = await uow.FooterRepository.FindFooterAsync(id);
+            var footerDto = mapper.Map<FooterDto>(footerFromDb);
+
+            return Ok(footerDto);
+        }
+
+        [HttpPost("Footers")]
+        public async Task<IActionResult> PostFooters(FooterDto footerDto)
+        {
+            var footer = mapper.Map<Footer>(footerDto);
+            uow.FooterRepository.AddFooter(footer);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("Footers/{id}")]
+        public async Task<IActionResult> PutFooters(int id, FooterDto footerDto)
+        {
+            if (id != footerDto.Id)
+                return BadRequest("Update not allowed");
+            var footerFromDb = await uow.FooterRepository.FindFooterAsync(id);
+            if (footerFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(footerDto, footerFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("Footers/{id}")]
+        public async Task<IActionResult> DeleteFooters(int id)
+        {
+            var footerFromDb = await uow.FooterRepository.FindFooterAsync(id);
+            if (footerFromDb == null)
+                return StatusCode(204);
+            uow.FooterRepository.DeleteFooter(id);
+            await uow.SaveAsync();
+            return Ok(id);
+        }
+        #endregion
+
+        #region Positions
+        [HttpGet("Positions")]
+        public async Task<IActionResult> GetPositions()
+        {
+            var positions = await uow.PositionRepository.GetPositionsAsync();
+            var positionsDto = mapper.Map<IList<PositionDto>>(positions);
+            return Ok(positionsDto);
+        }
+        [HttpGet("Positions/{id}")]
+        public async Task<IActionResult> GetPositions(int id)
+        {
+            var positionFromDb = await uow.PositionRepository.FindPositionAsync(id);
+            var positionDto = mapper.Map<PositionDto>(positionFromDb);
+
+            return Ok(positionDto);
+        }
+
+        [HttpPost("Positions")]
+        public async Task<IActionResult> PostPositions(PositionDto positionDto)
+        {
+            var position = mapper.Map<Position>(positionDto);
+            uow.PositionRepository.AddPosition(position);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+        [HttpPut("Positions/{id}")]
+        public async Task<IActionResult> PutPositions(int id, PositionDto positionDto)
+        {
+            if (id != positionDto.Id)
+                return BadRequest("Update not allowed");
+            var positionFromDb = await uow.PositionRepository.FindPositionAsync(id);
+            if (positionFromDb == null)
+                return BadRequest("Update not allowed");
+            mapper.Map(positionDto, positionFromDb);
+            await uow.SaveAsync();
+            return StatusCode(200);
+        }
+        [HttpDelete("Positions/{id}")]
+        public async Task<IActionResult> DeletePositions(int id)
+        {
+            var positionFromDb = await uow.PositionRepository.FindPositionAsync(id);
+            if (positionFromDb == null)
+                return StatusCode(204);
+            uow.PositionRepository.DeletePosition(id);
             await uow.SaveAsync();
             return Ok(id);
         }

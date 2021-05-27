@@ -521,7 +521,7 @@ namespace Traveltech.Migrations
                         column: x => x.WebSiteId,
                         principalTable: "WebSites",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -540,7 +540,7 @@ namespace Traveltech.Migrations
                         column: x => x.WebSiteId,
                         principalTable: "WebSites",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

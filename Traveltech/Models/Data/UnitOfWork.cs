@@ -8,6 +8,7 @@ namespace Traveltech.Models.Data
 {
     public interface IUnitOfWork
     {
+        IPositionRepository PositionRepository { get; }
         ITimeFormatRepository TimeFormatRepository { get; }
         IHeaderRepository HeaderRepository { get; }
         ILanguageRepository LanguageRepository { get; }
@@ -27,6 +28,9 @@ namespace Traveltech.Models.Data
         ISectionRepository SectionRepository { get; }
         IPageRepository PageRepository { get; }
         IDateFormatRepository DateFormatRepository { get; }
+        IMenuRepository MenuRepository { get; }
+        IMenuItemRepository MenuItemRepository { get; }
+        IFooterRepository FooterRepository { get; }
         Task<bool> SaveAsync();
     }
     public class UnitOfWork : IUnitOfWork
@@ -37,6 +41,14 @@ namespace Traveltech.Models.Data
         {
             this.dc = dc;
         }
+        public IMenuItemRepository MenuItemRepository =>
+            new MenuItemRepository(dc);
+        public IPositionRepository PositionRepository =>
+           new PositionRepository(dc);
+        public IFooterRepository FooterRepository =>
+           new FooterRepository(dc);
+        public IMenuRepository MenuRepository =>
+            new MenuRepository(dc);
         public IHeaderRepository HeaderRepository =>
          new HeaderRepository(dc);
         public ITimeFormatRepository TimeFormatRepository =>
