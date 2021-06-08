@@ -9,10 +9,12 @@ namespace Traveltech.Controllers.Dto
     public class WebSiteDto
     {
         public int Id { get; set; }
+        [StringLength(100)]
         public string Title { get; set; }
         public string Logo { get; set; }
         public string TagLine { get; set; }
         public string Url { get; set; }
+        [StringLength(100)]
         public string Domain { get; set; }
 
         [EmailAddress]

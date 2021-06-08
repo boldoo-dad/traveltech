@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Traveltech.Models
@@ -8,6 +9,7 @@ namespace Traveltech.Models
     public class SocialMedia
     {
         public int Id { get; set; }
+        [StringLength(100)]
         public string Title { get; set; }
         public int? SumbolId { get; set; }
         [JsonIgnore]

@@ -56,7 +56,6 @@ namespace Traveltech.Controllers
                 post1.Categories.Add(categories);
             }
             await uow.SaveAsync();
-
             return StatusCode(201);
         }
         [HttpPut("{id}")]
